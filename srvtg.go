@@ -8,6 +8,7 @@ import (
 	"net"
 	"net/http"
 	"strconv"
+	"strings"
 	"time"
 
 	"gopkg.in/telegram-bot-api.v4"
@@ -20,7 +21,7 @@ var bot *tgbotapi.BotAPI
 
 func panic(e error) {
 	if e != nil {
-		log.Panic(e)
+		log.Panic(e.Error)
 	}
 }
 
@@ -41,7 +42,8 @@ func main() {
 	var err error
 	tlgrmtoken, err := ioutil.ReadFile("tokentg")
 	panic(err)
-	bot, err = tgbotapi.NewBotAPI(string(tlgrmtoken))
+	tgtoken := strings.Replace(string(tlgrmtoken), "\n", "", -1)
+	bot, err = tgbotapi.NewBotAPI(tgtoken)
 	if err != nil {
 		log.Panic(err)
 	}
