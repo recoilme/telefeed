@@ -66,6 +66,10 @@ func main() {
 		if update.Message == nil {
 			continue
 		}
+		if update.Message.Chat.ID == -1001067277325 {
+			//skip updates from myakotkapub
+			continue
+		}
 		switch update.Message.Text {
 		case "/start":
 			user := update.Message.From
