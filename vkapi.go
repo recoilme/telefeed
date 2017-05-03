@@ -65,6 +65,35 @@ type Attachment struct {
 	Photo *Photo `json:"photo"`
 	Link  *Link  `json:"link"`
 	Video *Video `json:"video"`
+	Doc   *Doc   `json:"doc"`
+}
+
+type Doc struct {
+	ID      int    `json:"id"`
+	OwnerID int    `json:"owner_id"`
+	Title   string `json:"title"`
+	Size    int    `json:"size"`
+	Ext     string `json:"ext"`
+	URL     string `json:"url"`
+	Date    int    `json:"date"`
+	Type    int    `json:"type"`
+	Preview struct {
+		Photo struct {
+			Sizes []struct {
+				Src    string `json:"src"`
+				Width  int    `json:"width"`
+				Height int    `json:"height"`
+				Type   string `json:"type"`
+			} `json:"sizes"`
+		} `json:"photo"`
+		Video struct {
+			Src      string `json:"src"`
+			Width    int    `json:"width"`
+			Height   int    `json:"height"`
+			FileSize int    `json:"file_size"`
+		} `json:"video"`
+	} `json:"preview"`
+	AccessKey string `json:"access_key"`
 }
 
 type Photo struct {

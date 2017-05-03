@@ -54,7 +54,7 @@ func main() {
 	bot, err = tgbotapi.NewBotAPI(tgtoken)
 	catch(err)
 
-	bot.Debug = false
+	bot.Debug = true
 
 	log.Printf("Authorized on account %s", bot.Self.UserName)
 	u := tgbotapi.NewUpdate(0)
