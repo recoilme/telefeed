@@ -3,7 +3,6 @@ package main
 import (
 	"bytes"
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"net"
@@ -13,7 +12,6 @@ import (
 	"strings"
 	"time"
 
-	"github.com/robfig/cron"
 	"gopkg.in/telegram-bot-api.v4"
 )
 
@@ -64,14 +62,6 @@ func main() {
 
 	updates, err := bot.GetUpdatesChan(u)
 
-	c := cron.New()
-	log.Println(42)
-	c.AddFunc("0 30 * * * *", func() { fmt.Println("Every hour on the half hour") })
-	c.AddFunc("@hourly", func() { fmt.Println("Every hour") })
-	c.AddFunc("@every 0h01m", func() { fmt.Println("Every hour thirty") })
-	c.AddFunc("@every 0h00m05s", func() { fmt.Println("Every 5s thirty") })
-	c.Start()
-
 	for update := range updates {
 		if update.Message == nil {
 			continue
@@ -90,7 +80,6 @@ func main() {
 			pubFind(update.Message, msg)
 		}
 	}
-	c.Stop()
 
 }
 

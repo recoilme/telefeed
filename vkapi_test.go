@@ -11,6 +11,13 @@ func TestPosts(t *testing.T) {
 	}
 }
 
+func TestWallOwn(t *testing.T) {
+	s := WallGet(125698500)
+	if len(s) != 20 {
+		t.Error("WO Expected 20, got ", len(s))
+	}
+}
+
 func TestGroup(t *testing.T) {
 	test := "cook_good"
 	groups := GroupsGetById(test)
