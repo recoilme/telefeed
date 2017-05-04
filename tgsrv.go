@@ -35,6 +35,7 @@ func catch(e error) {
 }
 
 func init() {
+	log.SetOutput(ioutil.Discard)
 	http.DefaultClient.Transport = &http.Transport{
 		Dial: (&net.Dialer{
 			Timeout: 1 * time.Second,
