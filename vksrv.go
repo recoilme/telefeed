@@ -266,7 +266,7 @@ func pubpost(domain Group, p Post, users map[int]bool) {
 				}
 			}
 		case "video":
-			fmt.Printf("%+v\n", att.Video)
+			//fmt.Printf("%+v\n", att.Video)
 			if att.Video.Duration > 600 {
 				continue
 			}
@@ -300,7 +300,7 @@ func pubpost(domain Group, p Post, users map[int]bool) {
 				}
 			}
 		case "doc":
-			fmt.Printf("%+v\n", att.Doc)
+			//fmt.Printf("%+v\n", att.Doc)
 			b := httpGet(att.Doc.URL)
 			if b != nil {
 				bb := tgbotapi.FileBytes{Name: "tmp." + att.Doc.Ext, Bytes: b}
@@ -314,7 +314,7 @@ func pubpost(domain Group, p Post, users map[int]bool) {
 				}
 			}
 		case "link":
-			fmt.Printf("%+v\n", att.Link)
+			//fmt.Printf("%+v\n", att.Link)
 			var desc = ""
 			if len(txt) <= 250 {
 				desc = att.Link.URL + "\n" + txt
