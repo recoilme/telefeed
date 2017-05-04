@@ -13,7 +13,6 @@ import (
 	"strings"
 
 	"github.com/go-telegram-bot-api/telegram-bot-api"
-	"github.com/robfig/cron"
 )
 
 const (
@@ -67,14 +66,17 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	_ = bot
-	_ = wrbot
-	c := cron.New()
-	c.AddFunc("@every 0h10m00s", parseVk)
-	c.Start()
-	c.Stop()
+	fmt.Printf("%v+\n", time.Now())
+	go forever()
+	select {} // block forever
+}
 
-	log.Println("end")
+func forever() {
+	for {
+		//fmt.Printf("%v+\n", time.Now())
+		parseVk()
+		time.Sleep(600 * time.Second)
+	}
 }
 
 func parseVk() {
@@ -84,6 +86,7 @@ func parseVk() {
 		log.Println(domain.ScreenName)
 		users := domUsers(domains[i])
 		saveposts(domain, users)
+		time.Sleep(1 * time.Second)
 	}
 }
 
@@ -144,7 +147,6 @@ func saveposts(domain Group, users map[int]bool) {
 		httpPut(url, b)
 		log.Println(post.Id)
 		pubpost(domain, post, users)
-		break
 	}
 }
 

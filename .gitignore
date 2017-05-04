@@ -1,5 +1,7 @@
 .DS_Store
 bolt.db
-tokentg
 telefeed
 vkwriter
+tokentg
+vk/vkwriter
+vk/tokentg
